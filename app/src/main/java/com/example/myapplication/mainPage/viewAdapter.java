@@ -44,11 +44,11 @@ public class viewAdapter extends RecyclerView.Adapter<viewAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull viewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        Picasso.get().load(localDataSet.get(position).getImageUrl()).resize(256,256).into(holder.imageView);
+        Picasso.get().load(localDataSet.get(position).getImageUrl()).resize(256, 256).into(holder.imageView);
         holder.title.setText(localDataSet.get(position).getTitle());
-        holder.publishYear.setText("Year: "+String.valueOf(localDataSet.get(position).getPublishYear()));
-        holder.author.setText("Author: "+localDataSet.get(position).getAuthor());
-        holder.artist.setText("Artist: "+ localDataSet.get(position).getArtist());
+        holder.publishYear.setText("Year: " + String.valueOf(localDataSet.get(position).getPublishYear()));
+        holder.author.setText("Author: " + localDataSet.get(position).getAuthor());
+        holder.artist.setText("Artist: " + localDataSet.get(position).getArtist());
 
         holder.parentlayout.setOnClickListener(
                 new View.OnClickListener() {
@@ -77,6 +77,7 @@ public class viewAdapter extends RecyclerView.Adapter<viewAdapter.ViewHolder> {
         TextView artist;
 
         ConstraintLayout parentlayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

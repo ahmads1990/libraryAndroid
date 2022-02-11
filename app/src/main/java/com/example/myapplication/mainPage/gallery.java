@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 public class gallery extends AppCompatActivity {
 
     Button back;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -37,7 +38,7 @@ public class gallery extends AppCompatActivity {
         );
     }
 
-    private void setData(manga gallery){
+    private void setData(manga gallery) {
         ImageView img = (ImageView) findViewById(R.id.gallery_img);
         TextView title = (TextView) findViewById(R.id.gallery_title);
         TextView author = (TextView) findViewById(R.id.gallery_author);
@@ -47,8 +48,8 @@ public class gallery extends AppCompatActivity {
         //load data
         Picasso.get().load(gallery.getImageUrl()).into(img);
         title.setText(gallery.getTitle());
-        author.setText("author: "+gallery.getAuthor());
-        artist.setText("artist: "+gallery.getArtist());
+        author.setText("author: " + gallery.getAuthor());
+        artist.setText("artist: " + gallery.getArtist());
         desc.setText(gallery.getDescription());
     }
 }

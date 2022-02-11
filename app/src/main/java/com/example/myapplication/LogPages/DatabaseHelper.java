@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PASSWORD_COL = "password";
     private static final String EMAIL_COL = "email";
 
-    public DatabaseHelper(@Nullable Context context){
+    public DatabaseHelper(@Nullable Context context) {
         super(context, dbname, null, dbversion);
     }
 
@@ -37,18 +37,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(query);
     }
 
-    public boolean addNewUser(String username, String password, String email){
+    public boolean addNewUser(String username, String password, String email) {
         //create instance of db
         SQLiteDatabase db = this.getWritableDatabase();
 
         //check username isn't repeated
         Cursor cursor = db.rawQuery(" SELECT " + USERNAME_COL
-                + " FROM " + TABLE_USER_NAME
-                + " WHERE " + USERNAME_COL + "= " + username
+                        + " FROM " + TABLE_USER_NAME
+                        + " WHERE " + USERNAME_COL + "= " + username
                 , null);
 
         //if the name is repeated return error
-        if (cursor.getCount() > 0) { return false; }
+        if (cursor.getCount() > 0) {
+            return false;
+        }
 
         // variable for content values.
         ContentValues values = new ContentValues();
@@ -61,7 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-    public boolean checkLogIn(String username, String password){
+
+    public boolean checkLogIn(String username, String password) {
         //create instance of db
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -72,11 +75,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         + " AND " + PASSWORD_COL + " = " + password
                 , null);
 
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             return true;
         }
         return false;
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 

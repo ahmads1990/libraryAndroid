@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.mainPage.MainActivity;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class LogIn extends AppCompatActivity {
 
@@ -27,6 +27,7 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+
         usernameEdit = (EditText) findViewById(R.id.logIn_username);
         passwordEdit = (EditText) findViewById(R.id.logIn_password);
         logButton = (Button) findViewById(R.id.logIn_btn);
@@ -37,26 +38,26 @@ public class LogIn extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (usernameEdit.getText() == null)
-                        {
+                        if (usernameEdit.getText() == null) {
+                            /*
                             TextInputLayout user =  findViewById(R.id.logIn_username);
                             user.setError("Enter username");
-                        }
-                        else if (passwordEdit.getText() == null)
-                        {
+                            */
+
+                        } else if (passwordEdit.getText() == null) {
+                            /*
                             TextInputLayout pass =  findViewById(R.id.logIn_password);
                             pass.setError("Enter password");
-                        }
-                        else {
+
+                             */
+                        } else {
                             String username = usernameEdit.getText().toString();
                             String password = passwordEdit.getText().toString();
                             boolean valid = db.checkLogIn(username, password);
-                            if (valid)
-                            {
+                            if (valid) {
                                 Intent myintent = new Intent(view.getContext(), MainActivity.class);
                                 startActivity(myintent);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(),
                                         "Error enter correct data",
                                         Toast.LENGTH_SHORT).show();

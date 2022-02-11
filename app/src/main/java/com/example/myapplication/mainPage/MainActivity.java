@@ -21,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,14 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
 
-        Log.d("mytag","working");
+        Log.d("mytag", "working");
         mangaArrayList = new ArrayList<>();
         initRecyclerView();
 
     }
-    public interface VolleyCallBack {
-        void onSuccess();
-    }
+
     private void initRecyclerView() {
         Context context = this;
         //sendRequestLogin();
@@ -63,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void sendRequestLogin(){
+
+    private void sendRequestLogin() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://api.mangadex.org/auth/login",
                 new Response.Listener<String>() {
                     @Override
@@ -75,32 +73,34 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
+        }) {
             @Override
-            protected Map<String, String>  getParams(){
-                Map<String,String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("username", "ahmads1990");
                 params.put("password", "1234");
                 Log.d("mytag", "auth started");
                 return params;
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
                 Log.d("mytag", "auth failed");
                 return params;
             }
         };
         queue.add(stringRequest);
     }
+
     private void sendRequestCover(final VolleyCallBack callBack) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            Log.d("mytag1","start here");
+                            Log.d("mytag1", "start here");
                             //extract data from json
                             JSONObject first = new JSONObject(response);
                             JSONArray jsonArray = first.getJSONArray("data");
@@ -165,11 +165,15 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("mytag","error listener");
-                Log.d("mytag","error message"+error.toString());
+                Log.d("mytag", "error listener");
+                Log.d("mytag", "error message" + error.toString());
             }
         }
         );
         queue.add(stringRequest);
+    }
+
+    public interface VolleyCallBack {
+        void onSuccess();
     }
 }
