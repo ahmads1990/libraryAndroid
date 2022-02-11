@@ -38,14 +38,13 @@ public class viewAdapter extends RecyclerView.Adapter<viewAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull viewAdapter.ViewHolder holder, int position) {
-        Log.d("mytag1", "title: " + localDataSet.get(position).getTitle()
-        +"\nartist: " + localDataSet.get(position).getArtist()
-        +"\nurl: " + localDataSet.get(position).getImageUrl());
 
-        holder.title.setText(localDataSet.get(position).getTitle());
-        holder.lang.setText(localDataSet.get(position).getArtist());
         Picasso.get().load(localDataSet.get(position).getImageUrl()).into(holder.imageView);
-
+        holder.title.setText(localDataSet.get(position).getTitle());
+        holder.description.setText(localDataSet.get(position).getDescription());
+        holder.publishYear.setText(localDataSet.get(position).getPublishYear());
+        holder.author.setText(localDataSet.get(position).getAuthor());
+        holder.artist.setText(localDataSet.get(position).getArtist());
     }
 
 
@@ -58,14 +57,20 @@ public class viewAdapter extends RecyclerView.Adapter<viewAdapter.ViewHolder> {
         //define views
         ImageView imageView;
         TextView title;
-        TextView lang;
+        TextView description;
+        TextView publishYear;
+        TextView author;
+        TextView artist;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = (ImageView) itemView.findViewById(R.id.main_item_image);
             title = (TextView) itemView.findViewById(R.id.main_item_title);
-            lang = (TextView) itemView.findViewById(R.id.main_item_lang);
+            description = (TextView) itemView.findViewById(R.id.main_item_desc);
+            publishYear = (TextView) itemView.findViewById(R.id.main_item_publishYear);
+            author = (TextView) itemView.findViewById(R.id.main_item_author);
+            artist = (TextView) itemView.findViewById(R.id.main_item_artist);
         }
     }
 }
