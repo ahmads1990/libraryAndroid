@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
             protected Map<String, String>  getParams(){
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("username", "ahmads1990");
-                params.put("email", "ahmads20002000@gmail.com");
-                params.put("password", "z1z2z3z4");
+                params.put("password", "1234");
                 Log.d("mytag", "auth started");
                 return params;
             }
