@@ -1,7 +1,6 @@
-package com.example.myapplication.LogIn;
+package com.example.myapplication.LogPages;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
@@ -14,67 +13,67 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
-import com.example.myapplication.mainPage.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class logIn extends AppCompatActivity {
-
+public class Register extends AppCompatActivity {
     //vars
     EditText usernameEdit;
     EditText passwordEdit;
-    Button logButton;
-    TextView regText;
+    EditText emailEdit;
+    Button regButton;
+    TextView logText;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.register);
 
-        usernameEdit = (EditText) findViewById(R.id.logIn_username);
-        passwordEdit = (EditText) findViewById(R.id.logIn_password);
-        logButton = (Button) findViewById(R.id.logIn_btn);
-        regText = (TextView) findViewById(R.id.logIn_reg_word);
+        usernameEdit = (EditText) findViewById(R.id.logIn_password);
+        passwordEdit = (EditText) findViewById(R.id.reg_password);
+        emailEdit = (EditText) findViewById(R.id.reg_email);
+        regButton = (Button) findViewById(R.id.reg_btn);
+        logText = (TextView) findViewById(R.id.reg_go_login_btn);
 
         DatabaseHelper db = new DatabaseHelper(this);
-        logButton.setOnClickListener(
+        regButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (usernameEdit.getText() == null)
-                        {
-                            TextInputLayout user =  findViewById(R.id.logIn_username);
+                        if (usernameEdit.getText() == null) {
+                            TextInputLayout user = findViewById(R.id.reg_username);
                             user.setError("Enter username");
-                        }
-                        else if (passwordEdit.getText() == null)
-                        {
-                            TextInputLayout pass =  findViewById(R.id.logIn_password);
+                        } else if (passwordEdit.getText() == null) {
+                            TextInputLayout pass = findViewById(R.id.reg_password);
                             pass.setError("Enter password");
-                        }
-                        else {
+                        } else if (emailEdit.getText() == null) {
+                            TextInputLayout email = findViewById(R.id.reg_email);
+                            email.setError("Enter email");
+                        } else {
                             String username = usernameEdit.getText().toString();
                             String password = passwordEdit.getText().toString();
-                            boolean valid = db.checkLogIn(username, password);
-                            if (valid)
-                            {
-                                Intent myintent = new Intent(view.getContext(), MainActivity.class);
+                            String email = emailEdit.getText().toString();
+                            boolean valid = db.addNewUser(username, password, email);
+                            if (valid) {
+                                Intent myintent = new Intent(view.getContext(), LogIn.class);
                                 startActivity(myintent);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(),
-                                        "Error enter correct data",
+                                        "Error user already exists",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 }
         );
-        regText.setOnClickListener(
+
+        logText.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent myintent = new Intent(view.getContext(), Register.class);
+                        Intent myintent = new Intent(view.getContext(), LogIn.class);
                         startActivity(myintent);
                     }
                 }
         );
-
     }
 }

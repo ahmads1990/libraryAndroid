@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                                     String fileName = jsonObject.getString("fileName");
 
                                     //image url https://uploads.mangadex.org/covers/{ manga.id }/{ cover.filename }.256.jpg
-                                    String url = "https://uploads.mangadex.org/covers/" + id + '/' + fileName + ".256.jpg";
+                                    String url = "https://uploads.mangadex.org/covers/" + id + '/' + fileName + ".512.jpg";
                                     Log.d("mytag1", "url is :" + url);
 
                                     mangaArrayList.add(new manga(id, title, description, publishYear, author, artist, url));

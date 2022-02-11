@@ -1,6 +1,8 @@
 package com.example.myapplication.mainPage;
 
-public class manga {
+import java.io.Serializable;
+
+public class manga implements Serializable {
     private String id;
     private String title;
     private String description;

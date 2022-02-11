@@ -1,4 +1,4 @@
-package com.example.myapplication.LogIn;
+package com.example.myapplication.LogPages;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-
-import com.example.myapplication.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
