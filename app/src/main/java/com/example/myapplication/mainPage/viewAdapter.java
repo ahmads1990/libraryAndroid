@@ -42,9 +42,9 @@ public class viewAdapter extends RecyclerView.Adapter<viewAdapter.ViewHolder> {
         Picasso.get().load(localDataSet.get(position).getImageUrl()).into(holder.imageView);
         holder.title.setText(localDataSet.get(position).getTitle());
         holder.description.setText(localDataSet.get(position).getDescription());
-        holder.publishYear.setText(localDataSet.get(position).getPublishYear());
-        holder.author.setText(localDataSet.get(position).getAuthor());
-        holder.artist.setText(localDataSet.get(position).getArtist());
+        holder.publishYear.setText("Year: "+String.valueOf(localDataSet.get(position).getPublishYear()));
+        holder.author.setText("Author: "+localDataSet.get(position).getAuthor());
+        holder.artist.setText("Artist: "+ localDataSet.get(position).getArtist());
     }
 
 
