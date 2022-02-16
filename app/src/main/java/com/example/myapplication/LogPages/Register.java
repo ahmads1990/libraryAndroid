@@ -17,20 +17,20 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class Register extends AppCompatActivity {
     //vars
-    EditText usernameEdit;
-    EditText passwordEdit;
-    EditText emailEdit;
+    TextInputLayout usernameEdit;
+    TextInputLayout passwordEdit;
+    TextInputLayout emailEdit;
     Button regButton;
     TextView logText;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState)  {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
-        usernameEdit = (EditText) findViewById(R.id.logIn_password);
-        passwordEdit = (EditText) findViewById(R.id.reg_password);
-        emailEdit = (EditText) findViewById(R.id.reg_email);
+        usernameEdit = (TextInputLayout) findViewById(R.id.reg_username);
+        passwordEdit = (TextInputLayout) findViewById(R.id.reg_password);
+        emailEdit = (TextInputLayout) findViewById(R.id.reg_email);
         regButton = (Button) findViewById(R.id.reg_btn);
         logText = (TextView) findViewById(R.id.reg_go_login_btn);
 
@@ -39,19 +39,19 @@ public class Register extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (usernameEdit.getText() == null) {
+                        if (usernameEdit.getEditText().getText().toString() == null) {
                             TextInputLayout user = findViewById(R.id.reg_username);
                             user.setError("Enter username");
-                        } else if (passwordEdit.getText() == null) {
+                        } else if (passwordEdit.getEditText().getText().toString() == null) {
                             TextInputLayout pass = findViewById(R.id.reg_password);
                             pass.setError("Enter password");
-                        } else if (emailEdit.getText() == null) {
+                        } else if (emailEdit.getEditText().getText().toString() == null) {
                             TextInputLayout email = findViewById(R.id.reg_email);
                             email.setError("Enter email");
                         } else {
-                            String username = usernameEdit.getText().toString();
-                            String password = passwordEdit.getText().toString();
-                            String email = emailEdit.getText().toString();
+                            String username = usernameEdit.getEditText().getText().toString();
+                            String password = passwordEdit.getEditText().getText().toString();
+                            String email = emailEdit.getEditText().getText().toString();
                             boolean valid = db.addNewUser(username, password, email);
                             if (valid) {
                                 Intent myintent = new Intent(view.getContext(), LogIn.class);

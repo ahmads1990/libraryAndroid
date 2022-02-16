@@ -13,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.mainPage.MainActivity;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LogIn extends AppCompatActivity {
 
     //vars
-    private EditText usernameEdit;
-    private EditText passwordEdit;
+    private TextInputLayout usernameEdit;
+    private TextInputLayout passwordEdit;
     private Button logButton;
     private TextView regText;
 
@@ -28,8 +29,8 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.login);
 
 
-        usernameEdit = (EditText) findViewById(R.id.logIn_username);
-        passwordEdit = (EditText) findViewById(R.id.logIn_password);
+        usernameEdit = (TextInputLayout) findViewById(R.id.logIn_username);
+        passwordEdit = (TextInputLayout) findViewById(R.id.logIn_password);
         logButton = (Button) findViewById(R.id.logIn_btn);
         regText = (TextView) findViewById(R.id.logIn_reg_word);
 
@@ -38,21 +39,21 @@ public class LogIn extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (usernameEdit.getText() == null) {
-                            /*
-                            TextInputLayout user =  findViewById(R.id.logIn_username);
-                            user.setError("Enter username");
-                            */
+                        if (usernameEdit.getEditText().getText() == null) {
 
-                        } else if (passwordEdit.getText() == null) {
-                            /*
-                            TextInputLayout pass =  findViewById(R.id.logIn_password);
-                            pass.setError("Enter password");
 
-                             */
+                            usernameEdit.setError("Enter username");
+
+
+                        } else if (passwordEdit.getEditText().getText() == null) {
+
+
+                            passwordEdit.setError("Enter password");
+
+
                         } else {
-                            String username = usernameEdit.getText().toString();
-                            String password = passwordEdit.getText().toString();
+                            String username = usernameEdit.getEditText().getText().toString();
+                            String password = passwordEdit.getEditText().getText().toString();
                             boolean valid = db.checkLogIn(username, password);
                             if (valid) {
                                 Intent myintent = new Intent(view.getContext(), MainActivity.class);
@@ -67,15 +68,11 @@ public class LogIn extends AppCompatActivity {
                 }
         );
 
-        regText.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent myintent = new Intent(view.getContext(), Register.class);
-                        startActivity(myintent);
-                    }
-                }
-        );
+
+
 
     }
+    public void logIn_go_Reg(View view) {
+        Intent myintent = new Intent(this, Register.class);
+        startActivity(myintent);}
 }
