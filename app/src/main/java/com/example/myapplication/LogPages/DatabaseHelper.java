@@ -79,15 +79,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
            query= "SELECT " + USERNAME_COL + ", " + PASSWORD_COL
                     + " FROM " + TABLE_NAME_USERS
-                    + " WHERE " +PASSWORD_COL + " = " + "'"+password+"'"
-           + " and " + USERNAME_COL + " = " + "'"+username+"'";
+                    + " WHERE " +USERNAME_COL + " = ? "
+           + " and " + PASSWORD_COL + " = ? ";
             //check username and password
             Cursor cursor = db.rawQuery(query
-                    , null);
+                    , new String[]{username, password});
 
 
 
-            Log.d("mytag", String.valueOf( cursor.getCount()));
+            Log.d("mytag", "text "+String.valueOf( cursor.getCount()));
             if (cursor.getCount() > 0) {
                 return true;
             }
